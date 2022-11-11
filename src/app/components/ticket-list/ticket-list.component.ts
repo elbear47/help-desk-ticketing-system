@@ -9,6 +9,7 @@ import { TicketService } from 'src/app/services/ticket.service';
 })
 export class TicketListComponent implements OnInit {
 allTickets: Ticket[] = [];
+display: boolean = false;
 
   constructor(private ticketService: TicketService) { }
 
@@ -16,5 +17,14 @@ allTickets: Ticket[] = [];
     this.allTickets = this.ticketService.getAllTickets();
   }
 
+
+  toggleDisplay() {
+    this.display = !this.display;
+  }
+
+  confirm(){
+    let text: string = "Testing this confirm window.";
+    confirm(text);
+  }
   
 }
