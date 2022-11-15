@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class CreateTicketComponent implements OnInit {
   _title: string = '';
-  _priority: number = 0;
+  _priority: number = 3;
   _details: string = '';
   _submittedBy: string = '';
   _userId: number = 0;

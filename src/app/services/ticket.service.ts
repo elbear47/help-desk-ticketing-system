@@ -17,16 +17,37 @@ export class TicketService {
     resolvedBy: 'Elber Funez',
     resolutionNote: '',
     active: true,
+    isBookmarked: true
+  };
+  ticketTwo: Ticket = {
+    ticketId: 3,
+    title: 'Windows Media Player wont load',
+    dateSubmitted: '11/02/2022',
+    priority: 2,
+    details: 'Media Player is stuck on loading page',
+    submittedBy: 'Tolu',
+    userId: 2,
+    resolvedBy: 'Elber Funez',
+    resolutionNote: '',
+    active: true,
+    isBookmarked: false
   };
 
   currentId: number = 0;
 
-  ticketList: Ticket[] = [this.ticketOne];
+  ticketList: Ticket[] = [this.ticketOne, this.ticketTwo];
 
   constructor() {}
 
   getAllTickets(): Ticket[] {
     return this.ticketList;
+  }
+  getBookmarkedTickets(): Ticket[] {
+    this.ticketList = this.ticketList.filter(x =>{
+      x.isBookmarked === true;
+    });
+    return this.ticketList;
+
   }
 
   getTicketById(id: number): Ticket {
@@ -58,7 +79,8 @@ export class TicketService {
       userId: _userId,
       resolvedBy: '',
       resolutionNote: '',
-      active: true
+      active: true,
+      isBookmarked: false
     };
     this.ticketList.push(newTicket)
 

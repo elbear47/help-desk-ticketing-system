@@ -9,4 +9,5 @@ export interface Ticket {
   resolvedBy: string;
   resolutionNote: string;
   active: boolean;
+  isBookmarked: boolean;
 }

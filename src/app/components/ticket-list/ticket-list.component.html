@@ -1,20 +1,34 @@
-<div class="title">
-  <h1>All Tickets</h1>
+<div class="title m-4">
+  <h1>Welcome to Grand Circus Ticketing System</h1>
+  <div class="middle buttongroup float-right">
+    <a [routerLink]="['/createTicket']" [routerLinkActive]="['link-active']">
+      <button class="btn btn-info">Create A New Ticket (+)</button>
+    </a>
+  </div>
 </div>
 
-<div class="middle">
-  <a [routerLink]="['/createTicket']" [routerLinkActive]="['link-active']">
-    <button class="btn btn-info">Create A New Ticket (+)</button>
-  </a>
-  <button class="btn btn-info" (click)="refresh()">Refresh</button>
+<div class="table-filters buttongroup float-right m-4">
+  <button type="button" class="btn btn-outline-dark btn-sm" (click)="showBookmarkedTickets()">
+    View Bookmarked tickets
+  </button>
+  <button type="button" class="btn btn-outline-dark btn-sm">
+    View Active tickets
+  </button>
+  <button type="button" class="btn btn-outline-dark btn-sm">
+    View Closed Tickets
+  </button>
+  <button type="button" class="btn btn-outline-dark btn-sm" (click)="showAllTickets()">
+    View All Tickets
+  </button>
 </div>
 
-<table class="table">
+<table class="table m-4">
   <thead>
     <tr>
       <th scope="col">Ticket Id</th>
       <th scope="col">Ticket Title</th>
       <th scope="col">View Details</th>
+      <th scope="col"></th>
     </tr>
   </thead>
   <tbody>
@@ -24,12 +38,24 @@
       </td>
       <td>{{ ticket.title }}</td>
       <td>
-        <!-- <a
-          [routerLink]="['/ticketDetail', ticket.ticketId]"
-          [routerLinkActive]="['link-active']"
-        > -->
-          <button class="btn btn-primary" (click)="displayDetail(ticket.ticketId)">Details</button>
-        <!-- </a> -->
+        <button
+          class="btn btn-primary"
+          (click)="displayDetail(ticket.ticketId)"
+        >
+          Details
+        </button>
+      </td>
+      <td>
+        <button
+          type="button"
+          [ngClass]="
+            ticket.isBookmarked ? 'btn btn-warning' : 'btn btn-outline-warning'
+          "
+          (click)="changeBookmarkStatus(ticket)"
+        >
+          <div *ngIf="ticket.isBookmarked; else elseBlock">Bookmarked!</div>
+          <ng-template #elseBlock> Bookmark </ng-template>
+        </button>
       </td>
     </tr>
   </tbody>
