@@ -7,4 +7,6 @@ export interface Ticket {
   submittedBy: string;
   userId: number;
   resolvedBy: string;
+  resolutionNote: string;
+  active: boolean;
 }

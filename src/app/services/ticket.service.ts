@@ -15,6 +15,8 @@ export class TicketService {
     submittedBy: 'Jacob Magyar',
     userId: 1,
     resolvedBy: 'Elber Funez',
+    resolutionNote:'',
+    active: true
   };
 
   currentId: number = 0;

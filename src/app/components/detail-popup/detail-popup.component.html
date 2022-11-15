@@ -1,23 +1,40 @@
 <div class="container">
-  <h3>Ticket ID: {{currentTicket.ticketId}}</h3>
-  <h3>Ticket Title: {{currentTicket.title}}</h3>
-  <br>
-  <p>Date Submitted: {{currentTicket.dateSubmitted}}</p>
-  <p>Priority: {{currentTicket.priority}}</p>
-  <p>Submitted By: {{currentTicket.submittedBy}}</p>
-  <p>Resolved By: {{currentTicket.resolvedBy}}</p>
-  <p>Ticket Description: {{currentTicket.details}}</p>
+  <h3>Ticket ID: {{ currentTicket.ticketId }}</h3>
+  <h3>Ticket Title: {{ currentTicket.title }}</h3>
+  <br />
+  <p>Date Submitted: {{ currentTicket.dateSubmitted }}</p>
+  <p>Priority: {{ currentTicket.priority }}</p>
+  <p>Submitted By: {{ currentTicket.submittedBy }}</p>
+  <p>Resolved By: {{ currentTicket.resolvedBy }}</p>
+  <p>Ticket Description: {{ currentTicket.details }}</p>
+  <p>Is Ticket Active: {{ currentTicket.active }}</p>
+  <p>Resolution Note: {{ currentTicket.resolutionNote }}</p>
 </div>
 
-<div class="backbtn">
-  <a
-  [routerLink]="['']"
-  [routerLinkActive]="['link-active']"
+<div class="buttongroup">
+  <button
+    class="btn btn-primary"
+    (click)="toggleDisplayResolution = !toggleDisplayResolution"
+  >
+    Add Resolution Note
+  </button>
 
->
-  <button class="btn btn-primary">Go Back to Ticket List</button>
-</a>
+  <div class="backbtn">
+    <a [routerLink]="['']" [routerLinkActive]="['link-active']">
+      <button class="btn btn-primary">Go Back to Ticket List</button>
+    </a>
+  </div>
 </div>
 
-
-
+<div class="form-group col-md-6" *ngIf="toggleDisplayResolution">
+  <label for="details">Resolution</label>
+  <textarea
+    class="form-control"
+    id="details"
+    rows="3"
+    [(ngModel)]="resoNote"
+  ></textarea>
+  <button class="btn btn-primary buttongroup"  (click)="updateResolutionNote()">
+    Submit And Close Ticket
+  </button>
+</div>

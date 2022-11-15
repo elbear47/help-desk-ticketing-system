@@ -13,6 +13,8 @@ export class DetailPopupComponent implements OnInit {
   @Input() t1: Ticket = {} as Ticket;
   currentId: number = this.ticketService.getCurrentId();
   currentTicket: Ticket = this.ticketService.getTicketById(this.currentId);
+  toggleDisplayResolution: boolean = false;
+  resoNote: string = '';
 
 
 
@@ -22,5 +24,11 @@ export class DetailPopupComponent implements OnInit {
 
   }
 
+  updateResolutionNote(): void {
+    this.currentTicket.resolutionNote = this.resoNote;
+    this.currentTicket.active = false;
+    this.toggleDisplayResolution = false;
+    this.resoNote = '';
+  }
 
 }
