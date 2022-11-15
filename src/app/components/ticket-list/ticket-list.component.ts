@@ -22,6 +22,9 @@ display: boolean = false;
     this.router.navigate(['/ticketDetail/'+ id]); // route back to all tickets list
   }
 
+  refresh(): void {
+    this.allTickets = this.ticketService.getAllTickets();
+  }
 
 
 }

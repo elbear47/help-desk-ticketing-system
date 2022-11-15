@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TicketService } from '../../services/ticket.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-ticket',
@@ -20,7 +21,7 @@ export class CreateTicketComponent implements OnInit {
 
 
 
-  constructor(private ticketService: TicketService) { }
+  constructor(private ticketService: TicketService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -32,7 +33,8 @@ export class CreateTicketComponent implements OnInit {
     _submittedBy: string,
     _userId: number
   ){
-    this.ticketService.createAndAddNewTicket(_title, _priority, _details, _submittedBy, _userId)
+    this.ticketService.createAndAddNewTicket(_title, _priority, _details, _submittedBy, _userId);
+    this.router.navigate(['']);
   }
 
 }

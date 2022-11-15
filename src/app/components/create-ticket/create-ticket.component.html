@@ -41,7 +41,7 @@
       <div class="form-group col-md-6">
         <label for="userId">User Id</label>
         <input
-          type="text"
+          type="number"
           class="form-control"
           id="userId"
           placeholder="userId"
@@ -61,7 +61,7 @@
         />
       </div>
     </div>
-    <button type="submit" class="btn btn-primary buttongroup">Create new Ticket</button>
+    <button type="submit" class="btn btn-primary buttongroup" (click)="addNewTicket(_title, _priority, _details, _submittedBy, _userId)">Create new Ticket</button>
   </form>
 
   <div class="backbtn">
