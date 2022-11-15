@@ -18,13 +18,6 @@ display: boolean = false;
   }
 
 
-  toggleDisplay() {
-    this.display = !this.display;
-  }
 
-  confirm(){
-    let text: string = "Testing this confirm window.";
-    confirm(text);
-  }
-  
+
 }
