@@ -15,7 +15,11 @@ export class TicketService {
     submittedBy: 'Jacob Magyar',
     userId: 1,
     resolvedBy: 'Elber Funez',
+    resolutionNote:'',
+    active: true
   };
+
+  currentId: number = 0;
 
   ticketList: Ticket[] = [this.ticketOne];
 
@@ -23,5 +27,17 @@ export class TicketService {
 
   getAllTickets(): Ticket[] {
     return this.ticketList;
+  }
+
+  getTicketById(id: number): Ticket {
+    return this.ticketList.filter(t => t.ticketId == id)[0];
+  }
+  setCurrentId(id: number): number{
+    this.currentId = id;
+    return this.currentId;
+  }
+
+  getCurrentId(){
+    return this.currentId;
   }
 }
