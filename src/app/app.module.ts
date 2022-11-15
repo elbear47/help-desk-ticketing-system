@@ -5,18 +5,21 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TicketListComponent } from './components/ticket-list/ticket-list.component';
 import { DetailPopupComponent } from './components/detail-popup/detail-popup.component';
-import { DetailDisplayComponent } from './components/detail-display/detail-display.component';
+import { CreateTicketComponent } from './components/create-ticket/create-ticket.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
     AppComponent,
     TicketListComponent,
     DetailPopupComponent,
-    DetailDisplayComponent
+    CreateTicketComponent
+
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    RouterModule
   ],
   providers: [],
   bootstrap: [AppComponent]

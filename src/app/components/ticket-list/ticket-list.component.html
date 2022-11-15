@@ -2,8 +2,10 @@
   <h1>All Tickets</h1>
 </div>
 
-<div *ngFor="let ticket of allTickets">
-  <p>{{ ticket.ticketId }}</p>
+<div class="middle">
+  <a [routerLink]="['/createTicket']" [routerLinkActive]="['link-active']">
+    <button class="btn btn-info">Create A New Ticket (+)</button>
+  </a>
 </div>
 
 <table class="table">
@@ -12,7 +14,6 @@
       <th scope="col">Ticket Id</th>
       <th scope="col">Ticket Title</th>
       <th scope="col">View Details</th>
-
     </tr>
   </thead>
   <tbody>
@@ -22,18 +23,12 @@
       </td>
       <td>{{ ticket.title }}</td>
       <td>
-        <a
-          [routerLink]="['/ticketDetail']"
+        <!-- <a
+          [routerLink]="['/ticketDetail', ticket.ticketId]"
           [routerLinkActive]="['link-active']"
-        >
-
-          <button class="btn btn-primary">Details
-            <app-detail-display
-            [t1]="ticket"
-            >
-            </app-detail-display>
-          </button>
-        </a>
+        > -->
+          <button class="btn btn-primary" (click)="displayDetail(ticket.ticketId)">Details</button>
+        <!-- </a> -->
       </td>
     </tr>
   </tbody>

@@ -1,12 +1,23 @@
 <div class="container">
-  <h1>test</h1>
+  <h3>Ticket ID: {{currentTicket.ticketId}}</h3>
+  <h3>Ticket Title: {{currentTicket.title}}</h3>
+  <br>
+  <p>Date Submitted: {{currentTicket.dateSubmitted}}</p>
+  <p>Priority: {{currentTicket.priority}}</p>
+  <p>Submitted By: {{currentTicket.submittedBy}}</p>
+  <p>Resolved By: {{currentTicket.resolvedBy}}</p>
+  <p>Ticket Description: {{currentTicket.details}}</p>
 </div>
 
 <div class="backbtn">
   <a
   [routerLink]="['']"
   [routerLinkActive]="['link-active']"
+
 >
   <button class="btn btn-primary">Go Back to Ticket List</button>
 </a>
 </div>
+
+
+

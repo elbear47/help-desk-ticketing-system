@@ -17,11 +17,25 @@ export class TicketService {
     resolvedBy: 'Elber Funez',
   };
 
+  currentId: number = 0;
+
   ticketList: Ticket[] = [this.ticketOne];
 
   constructor() {}
 
   getAllTickets(): Ticket[] {
     return this.ticketList;
+  }
+
+  getTicketById(id: number): Ticket {
+    return this.ticketList.filter(t => t.ticketId == id)[0];
+  }
+  setCurrentId(id: number): number{
+    this.currentId = id;
+    return this.currentId;
+  }
+
+  getCurrentId(){
+    return this.currentId;
   }
 }
