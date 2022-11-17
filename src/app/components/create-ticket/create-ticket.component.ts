@@ -13,8 +13,8 @@ export class CreateTicketComponent implements OnInit {
   _details: string = '';
   _submittedBy: string = '';
   _userId: number = 0;
-  _ticketId: number = 2;
-  _dateSubmitted: string = '';
+  //_ticketId: number = 2;
+  _dateSubmitted: string = Date.now().toString();
   _resolvedBy: string = '';
   _resolutionNote: string = '';
   _active: boolean = true;

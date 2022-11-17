@@ -11,10 +11,10 @@
   <button type="button" class="btn btn-outline-dark btn-sm" (click)="showBookmarkedTickets()">
     View Bookmarked tickets
   </button>
-  <button type="button" class="btn btn-outline-dark btn-sm">
+  <button type="button" class="btn btn-outline-dark btn-sm" (click)="showActiveTickets()">
     View Active tickets
   </button>
-  <button type="button" class="btn btn-outline-dark btn-sm">
+  <button type="button" class="btn btn-outline-dark btn-sm" (click)="showClosedTickets()">
     View Closed Tickets
   </button>
   <button type="button" class="btn btn-outline-dark btn-sm" (click)="showAllTickets()">
@@ -27,6 +27,7 @@
     <tr>
       <th scope="col">Ticket Id</th>
       <th scope="col">Ticket Title</th>
+      <th scope="col">Is Ticket Active</th>
       <th scope="col">View Details</th>
       <th scope="col"></th>
     </tr>
@@ -37,6 +38,8 @@
         <a>{{ ticket.ticketId }}</a>
       </td>
       <td>{{ ticket.title }}</td>
+      <td>{{ ticket.active }}
+      </td>
       <td>
         <button
           class="btn btn-primary"
@@ -52,8 +55,8 @@
             ticket.isBookmarked ? 'btn btn-warning' : 'btn btn-outline-warning'
           "
           (click)="changeBookmarkStatus(ticket)"
-        >
-          <div *ngIf="ticket.isBookmarked; else elseBlock">Bookmarked!</div>
+         >
+         <div *ngIf="ticket.isBookmarked; else elseBlock">Bookmarked!</div>
           <ng-template #elseBlock> Bookmark </ng-template>
         </button>
       </td>

@@ -17,20 +17,20 @@ export class TicketService {
     resolvedBy: 'Elber Funez',
     resolutionNote: '',
     active: true,
-    isBookmarked: true
+    isBookmarked: true,
   };
   ticketTwo: Ticket = {
     ticketId: 3,
-    title: 'Windows Media Player wont load',
+    title: 'Windows Media Player won\'t load',
     dateSubmitted: '11/02/2022',
     priority: 2,
     details: 'Media Player is stuck on loading page',
-    submittedBy: 'Tolu',
+    submittedBy: 'Olu',
     userId: 2,
     resolvedBy: 'Elber Funez',
     resolutionNote: '',
     active: true,
-    isBookmarked: false
+    isBookmarked: false,
   };
 
   currentId: number = 0;
@@ -43,11 +43,23 @@ export class TicketService {
     return this.ticketList;
   }
   getBookmarkedTickets(): Ticket[] {
-    this.ticketList = this.ticketList.filter(x =>{
-      x.isBookmarked === true;
-    });
-    return this.ticketList;
+   return this.ticketList.filter(
+      (x) => x.isBookmarked === true
+    );
+  }
 
+  getActiveTickets(): Ticket[] {
+    let activeTickets: Ticket[] = this.ticketList.filter(
+      (x) => x.active === true
+    );
+    return activeTickets;
+  }
+
+  getClosedTickets(): Ticket[] {
+    let closedTickets: Ticket[] = this.ticketList.filter(
+      (x) => x.active === false
+    );
+    return closedTickets;
   }
 
   getTicketById(id: number): Ticket {
@@ -72,7 +84,7 @@ export class TicketService {
     let newTicket = {
       ticketId: 2,
       title: _title,
-      dateSubmitted: '2022-01-05',
+      dateSubmitted: '',
       priority: _priority,
       details: _details,
       submittedBy: _submittedBy,
@@ -80,11 +92,8 @@ export class TicketService {
       resolvedBy: '',
       resolutionNote: '',
       active: true,
-      isBookmarked: false
+      isBookmarked: false,
     };
-    this.ticketList.push(newTicket)
-
+    this.ticketList.push(newTicket);
   }
-
-
 }

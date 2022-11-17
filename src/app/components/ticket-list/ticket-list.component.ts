@@ -28,6 +28,14 @@ export class TicketListComponent implements OnInit {
     this.allTickets = this.ticketService.getBookmarkedTickets();
   }
 
+  showActiveTickets(): void {
+    this.allTickets = this.ticketService.getActiveTickets();
+  }
+
+  showClosedTickets(): void {
+    this.allTickets = this.ticketService.getClosedTickets();
+  }
+
   showAllTickets(): void {
     this.allTickets = this.ticketService.getAllTickets();
   }
