@@ -1,69 +1,37 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Ticket } from '../interfaces/Ticket';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TicketService {
-  // test it with dummy data
-  ticketOne: Ticket = {
-    ticketId: 1,
-    title: 'Computer not working',
-    dateSubmitted: '11/01/2022',
-    priority: 1,
-    details: 'Computer will not load the internet',
-    submittedBy: 'Jacob Magyar',
-    userId: 1,
-    resolvedBy: 'Elber Funez',
-    resolutionNote: '',
-    active: true,
-    isBookmarked: true,
-  };
-  ticketTwo: Ticket = {
-    ticketId: 3,
-    title: 'Windows Media Player won\'t load',
-    dateSubmitted: '11/02/2022',
-    priority: 2,
-    details: 'Media Player is stuck on loading page',
-    submittedBy: 'Olu',
-    userId: 2,
-    resolvedBy: 'Elber Funez',
-    resolutionNote: '',
-    active: true,
-    isBookmarked: false,
-  };
 
   currentId: number = 0;
+  backendURL: string = 'https://localhost:7068/api';
+  // ticketList2: Observable<Ticket[]> = this.httpClient.get<Ticket[]>(this.backendURL + '/Ticket');
 
-  ticketList: Ticket[] = [this.ticketOne, this.ticketTwo];
+  constructor(private httpClient: HttpClient) {}
 
-  constructor() {}
+  getAllTickets = (): Observable<Ticket[]> => {
+    return this.httpClient.get<Ticket[]>(this.backendURL + '/Ticket');
+  };
 
-  getAllTickets(): Ticket[] {
-    return this.ticketList;
-  }
-  getBookmarkedTickets(): Ticket[] {
-   return this.ticketList.filter(
-      (x) => x.isBookmarked === true
-    );
-  }
-
-  getActiveTickets(): Ticket[] {
-    let activeTickets: Ticket[] = this.ticketList.filter(
-      (x) => x.active === true
-    );
-    return activeTickets;
+  getBookmarkedTickets = (): Observable<Ticket[]> => {
+    return this.httpClient.get<Ticket[]>(this.backendURL + '/Ticket/GetBookmarkedTickets');
   }
 
-  getClosedTickets(): Ticket[] {
-    let closedTickets: Ticket[] = this.ticketList.filter(
-      (x) => x.active === false
-    );
-    return closedTickets;
+  getActiveTickets = (): Observable<Ticket[]> => {
+    return this.httpClient.get<Ticket[]>(this.backendURL + '/Ticket/GetActiveTickets');
   }
 
-  getTicketById(id: number): Ticket {
-    return this.ticketList.filter((t) => t.ticketId == id)[0];
+  getClosedTickets = (): Observable<Ticket[]> => {
+    return this.httpClient.get<Ticket[]>(this.backendURL + '/Ticket/GetClosedTickets')
+  }
+
+  getTicketById = (id: number): Observable<Ticket> => {
+    return this.httpClient.get<Ticket>(this.backendURL + '/Ticket/'+ id);
   }
   setCurrentId(id: number): number {
     this.currentId = id;
@@ -73,27 +41,26 @@ export class TicketService {
   getCurrentId(): number {
     return this.currentId;
   }
+  changeBookmarkStatus = (ticket: Ticket, newBookmarkStatus :string ): void=> {
+    this.httpClient.put(this.backendURL +
+      '/Ticket/' + ticket.id +
+      '?title='+ ticket.title +
+      '&dateSubmitted='+ ticket.dateSubmitted +
+      '&priority='+ ticket.priority +
+      '&details='+ ticket.details +
+      '&resolvedBy='+ ticket.resolvedBy +
+      '&resolutionNote='+ ticket.resolutionNote +
+      '&active='+ ticket.active +
+      '&isBookmarked='+ newBookmarkStatus,null
+      )
 
-  createAndAddNewTicket(
-    _title: string,
-    _priority: number,
-    _details: string,
-    _submittedBy: string,
-    _userId: number
-  ): void {
-    let newTicket = {
-      ticketId: 2,
-      title: _title,
-      dateSubmitted: '',
-      priority: _priority,
-      details: _details,
-      submittedBy: _submittedBy,
-      userId: _userId,
-      resolvedBy: '',
-      resolutionNote: '',
-      active: true,
-      isBookmarked: false,
-    };
-    this.ticketList.push(newTicket);
   }
+
+  createAndAddNewTicket(newTicket: Ticket): Observable<Ticket> {
+
+    return this.httpClient.post<Ticket>(this.backendURL + '/Ticket', newTicket);
+
+  }
+
+  
 }

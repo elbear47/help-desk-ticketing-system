@@ -1,79 +1,96 @@
-<div class="container">
-  <form>
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <label for="title">Title*</label>
-        <input
-          type="text"
-          class="form-control"
-          id="title"
-          placeholder="Title"
-          [(ngModel)]="_title"
-          name="_title"
-          required
-        />
+<body>
+  <div class="container">
+    <form (ngSubmit)="submit()">
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="title">Title*</label>
+          <input
+            type="text"
+            class="form-control"
+            id="title"
+            placeholder="Title"
+            [(ngModel)]="_title"
+            name="_title"
+            required
+          />
+        </div>
+        <div class="form-group col-md-6">
+          <label for="priority">Priority (1-3)*</label>
+          <input
+            type="number"
+            min="1"
+            max="3"
+            class="form-control"
+            id="priority"
+            placeholder="priority"
+            [(ngModel)]="_priority"
+            name="_priority"
+            required
+          />
+        </div>
+        <div class="form-group col-md-6">
+          <label for="details">Details*</label>
+          <textarea
+            class="form-control"
+            id="details"
+            rows="3"
+            [(ngModel)]="_details"
+            name="_details"
+            required
+          ></textarea>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="submittedBy">Submitted By*</label>
+          <input
+            type="text"
+            class="form-control"
+            id="submittedBy"
+            placeholder="submittedBy"
+            [(ngModel)]="_submittedBy"
+            name="_submittedBy"
+            required
+          />
+        </div>
+        <div class="form-group col-md-6">
+          <label for="userId">User Id*</label>
+          <input
+            type="number"
+            class="form-control"
+            id="userId"
+            placeholder="userId"
+            [(ngModel)]="_userId"
+            name="_userId"
+            required
+          />
+        </div>
+        <div class="form-group col-md-6">
+          <label for="resolvedBy">Resolved By*</label>
+          <input
+            type="text"
+            class="form-control"
+            id="resolvedBy"
+            placeholder="resolvedBy"
+            [(ngModel)]="_resolvedBy"
+            name="_resolvedBy"
+            required
+          />
+        </div>
       </div>
-      <div class="form-group col-md-6">
-        <label for="priority">Priority (1-3)*</label>
-        <input
-          type="number"
-          min="1" 
-          max="3"
-          class="form-control"
-          id="priority"
-          placeholder="priority"
-          [(ngModel)]="_priority"
-          name="_priority"
-          required
-        />
-      </div>
-      <div class="form-group col-md-6">
-        <label for="details">Details*</label>
-        <textarea class="form-control" id="details" rows="3" [(ngModel)]="_details" name="_details" required></textarea>
-      </div>
-      <div class="form-group col-md-6">
-        <label for="submittedBy">Submitted By*</label>
-        <input
-          type="text"
-          class="form-control"
-          id="submittedBy"
-          placeholder="submittedBy"
-          [(ngModel)]="_submittedBy"
-          name="_submittedBy"
-          required
-        />
-      </div>
-      <div class="form-group col-md-6">
-        <label for="userId">User Id*</label>
-        <input
-          type="number"
-          class="form-control"
-          id="userId"
-          placeholder="userId"
-          [(ngModel)]="_userId"
-          name="_userId"
-          required
-        />
-      </div>
-      <div class="form-group col-md-6">
-        <label for="resolvedBy">Resolved By*</label>
-        <input
-          type="text"
-          class="form-control"
-          id="resolvedBy"
-          placeholder="resolvedBy"
-          [(ngModel)]="_resolvedBy"
-          name="_resolvedBy"
-          required
-        />
-      </div>
-    </div>
-    <button type="submit" class="btn btn-primary buttongroup" (click)="addNewTicket(_title, _priority, _details, _submittedBy, _userId)">Submit</button>
-  </form>
+      <button
+        type="button"
+        class="btn btn-primary buttongroup"
+        (click)="
+          submit()
+        "
+      >
+        Submit
+      </button>
+    </form>
 
-  <div class="backbtn">
-    <a [routerLink]="['']" [routerLinkActive]="['link-active']">
-      <button class="btn btn-primary">Go Back to Ticket List</button>
-    </a>
+    <div class="backbtn">
+      <a [routerLink]="['']" [routerLinkActive]="['link-active']">
+        <button class="btn btn-primary">Go Back to Ticket List</button>
+      </a>
+    </div>
   </div>
-</div>
+</body>

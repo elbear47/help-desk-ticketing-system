@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { Ticket } from '../../interfaces/Ticket';
 import { TicketService } from '../../services/ticket.service';
@@ -12,7 +13,10 @@ import { TicketService } from '../../services/ticket.service';
 export class DetailPopupComponent implements OnInit {
   @Input() t1: Ticket = {} as Ticket;
   currentId: number = this.ticketService.getCurrentId();
-  currentTicket: Ticket = this.ticketService.getTicketById(this.currentId);
+  currentTicket: any = this.ticketService.getTicketById(this.currentId).subscribe((data: Ticket) => {
+    this.currentTicket = data;
+  });
+
   toggleDisplayResolution: boolean = false;
   resoNote: string = '';
 

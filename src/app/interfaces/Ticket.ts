@@ -1,5 +1,6 @@
 export interface Ticket {
-  ticketId: number;
+  // ticketId: number;
+  id?: number;
   title: string;
   dateSubmitted: string;
   priority: number;
@@ -8,6 +9,6 @@ export interface Ticket {
   userId: number;
   resolvedBy: string;
   resolutionNote: string;
-  active: boolean;
-  isBookmarked: boolean;
+  active: string;
+  isBookmarked: string;
 }
