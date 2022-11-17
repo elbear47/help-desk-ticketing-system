@@ -35,7 +35,7 @@
   <tbody>
     <tr *ngFor="let ticket of allTickets">
       <td>
-        <a>{{ ticket.ticketId }}</a>
+        <a>{{ ticket.id }}</a>
       </td>
       <td>{{ ticket.title }}</td>
       <td>{{ ticket.active }}
@@ -43,7 +43,7 @@
       <td>
         <button
           class="btn btn-primary"
-          (click)="displayDetail(ticket.ticketId)"
+          (click)="displayDetail(ticket.id)"
         >
           Details
         </button>
@@ -51,12 +51,12 @@
       <td>
         <button
           type="button"
-          [ngClass]="
-            ticket.isBookmarked ? 'btn btn-warning' : 'btn btn-outline-warning'
+          [ngClass]=" (ticket.isBookmarked == 'true')
+            ? 'btn btn-warning' : 'btn btn-outline-warning'
           "
           (click)="changeBookmarkStatus(ticket)"
          >
-         <div *ngIf="ticket.isBookmarked; else elseBlock">Bookmarked!</div>
+         <div *ngIf="(ticket.isBookmarked == 'true'); else elseBlock">Bookmarked!</div>
           <ng-template #elseBlock> Bookmark </ng-template>
         </button>
       </td>

@@ -8,6 +8,7 @@ import { DetailPopupComponent } from './components/detail-popup/detail-popup.com
 import { CreateTicketComponent } from './components/create-ticket/create-ticket.component';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from "@angular/common/http";
 
 
 @NgModule({
@@ -16,14 +17,16 @@ import { FormsModule } from '@angular/forms';
     TicketListComponent,
     DetailPopupComponent,
     CreateTicketComponent
-    
+
 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     RouterModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]
